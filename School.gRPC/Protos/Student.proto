@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "School.gRPC.Protos";
+
+import "google/protobuf/empty.proto";
+
+service Student{
+    //Get
+	rpc GetStudent(IdRequest) returns (StudentReply);
+	//GetAll
+    rpc GetStudents(google.protobuf.Empty) returns (Students);
+	//Create
+    rpc AddStudent(StudentReply) returns (google.protobuf.Empty);
+
+}
+//repeated says its the collection of StudentReply
+message Students {
+	repeated StudentReply Stu = 1;
+	//List<StudentReply>() same as C#
+}
+
+message IdRequest {
+	int32 StudentID = 1;
+}
+
+message StudentReply {
+	int32 StudentID = 1;
+	string Name = 2;
+}
